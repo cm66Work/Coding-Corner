@@ -12,6 +12,8 @@
 #include <GLFW/glfw3.h>
 #include <string>
 
+#ifndef LVE_WINDOW_HPP
+#define LVE_WINDOW_HPP
 namespace lve {
 class LveWindow {
 public:
@@ -38,3 +40,4 @@ private:
   GLFWwindow *pWindow;
 };
 } // namespace lve
+#endif
