@@ -6,7 +6,7 @@
 #include <stdexcept>
 
 int main() {
-  lve::FirstApp app{};
+  CoffeeBeanEngine::FirstApp app{};
 
   try { // Try to start the window application.
     app.Run();

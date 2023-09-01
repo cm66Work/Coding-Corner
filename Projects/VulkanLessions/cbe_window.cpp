@@ -1,19 +1,22 @@
-#include "lve_window.hpp"
+#include "cbe_window.hpp"
+#include <GLFW/glfw3.h>
+#include <stdexcept>
+#include <vulkan/vulkan_core.h>
 // #include <GLFW/glfw3.h>
 
-namespace lve {
-LveWindow::LveWindow(int w, int h, std::string name)
+namespace CoffeeBeanEngine {
+CoffeeBeanEngineWindow::CoffeeBeanEngineWindow(int w, int h, std::string name)
     : WIDTH(w), HEIGHT(h), WINDOW_NAME(name) { // Member initulisers
   InitWindow();                                // call the helper funcion.
 }
 
-LveWindow::~LveWindow() {
+CoffeeBeanEngineWindow::~CoffeeBeanEngineWindow() {
   // destroy the resources we aquired during initulisation.
   glfwDestroyWindow(pWindow);
   glfwTerminate();
 }
 
-void LveWindow::InitWindow() {
+void CoffeeBeanEngineWindow::InitWindow() {
   // Initulise the GLFW library.
   glfwInit();
   // Do not create an OpenGL context when the window is created,
@@ -29,4 +32,12 @@ void LveWindow::InitWindow() {
   pWindow =
       glfwCreateWindow(WIDTH, HEIGHT, WINDOW_NAME.c_str(), nullptr, nullptr);
 }
-} // namespace lve
+void CoffeeBeanEngineWindow::CreateWindowSurface(VkInstance instance,
+                                                 VkSurfaceKHR *surface) {
+  if (glfwCreateWindowSurface(instance, pWindow, nullptr, surface) !=
+      VK_SUCCESS) {
+    throw std::runtime_error(
+        "ERROR:Window Creations: Failed to create Window.");
+  }
+}
+} // namespace CoffeeBeanEngine
