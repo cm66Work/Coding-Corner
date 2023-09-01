@@ -1,10 +1,11 @@
-#include "lve_pipeline.hpp"
-#include "lve_window.hpp"
+#ifndef CBE_FIRST_APP_HPP
+#define CBE_FIRST_APP_HPP
 
-#ifndef LVE_FIRST_APP_HPP
-#define LVE_FIRST_APP_HPP
+#include "cbe_device.hpp"
+#include "cbe_pipeline.hpp"
+#include "cbe_window.hpp"
 
-namespace lve {
+namespace CoffeeBeanEngine {
 class FirstApp {
 public:
   // Constents for the windwos Width and Height.
@@ -19,9 +20,12 @@ private:
   // Actually create the window how.
   // We do not need to handle pointers or dynamic memeory allocation
   // since that is all handled by at lower levels.
-  LveWindow lveWindow{WIDTH, HEIGHT, "Hello Vulkan!"};
-  LvePipeline lvePipeLine{"shaders/simple_shadter.vert.spv",
-                          "shaders/simple_shadter.frag.spv"};
+  CoffeeBeanEngineWindow coffeeBeanEngineWindow{WIDTH, HEIGHT, "Hello Vulkan!"};
+  CoffeeBeanEngineDevice coffeeBeanEngineDevice{coffeeBeanEngineWindow};
+  CoffeeBeanEnginePipeline coffeeBeanEnginePipeLine{
+      coffeeBeanEngineDevice, "shaders/simple_shadter.vert.spv",
+      "shaders/simple_shader.frag.spv",
+      CoffeeBeanEnginePipeline::DefaultPipelineConfigInfo(WIDTH, HEIGHT)};
 };
-} // namespace lve
+} // namespace CoffeeBeanEngine
 #endif // !lve_first_app_hpp

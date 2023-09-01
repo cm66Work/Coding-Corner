@@ -1,4 +1,3 @@
-// lev_window : Little Vulkan Engien Window.
 // Define guarding, to protect existing definision int the project
 // preventing a refenrece error or memory leak.
 #ifndef GLFW_INCLUDE_VULKAN
@@ -12,24 +11,26 @@
 #include <GLFW/glfw3.h>
 #include <string>
 
-#ifndef LVE_WINDOW_HPP
-#define LVE_WINDOW_HPP
-namespace lve {
-class LveWindow {
+#ifndef CBE_WINDOW_HPP
+#define CBE_WINDOW_HPP
+namespace CoffeeBeanEngine {
+class CoffeeBeanEngineWindow {
 public:
-  LveWindow(int w, int h, std::string name);
+  CoffeeBeanEngineWindow(int w, int h, std::string name);
   // desitructor is the last function called before an object is
   // destroyed.
-  ~LveWindow();
+  ~CoffeeBeanEngineWindow();
 
   // delete the copy constructor and opporator.
   // Resource creation happens when variables are initulised.
   // Cleanups are handled by destructors.
-  LveWindow(const LveWindow &) = delete;
-  LveWindow &operator=(const LveWindow &) = delete;
+  CoffeeBeanEngineWindow(const CoffeeBeanEngineWindow &) = delete;
+  CoffeeBeanEngineWindow &operator=(const CoffeeBeanEngineWindow &) = delete;
 
   // returns true if the user has clicked the close button on the window.
   bool ShouldClose() { return glfwWindowShouldClose(pWindow); }
+
+  void CreateWindowSurface(VkInstance instance, VkSurfaceKHR *surface);
 
 private:
   // Helper funcion for creating the window.
@@ -39,5 +40,5 @@ private:
   const std::string WINDOW_NAME;
   GLFWwindow *pWindow;
 };
-} // namespace lve
+} // namespace CoffeeBeanEngine
 #endif
