@@ -22,6 +22,8 @@ public:
   // Clean up resources.
   void Shutdown();
 
+  float GetDeltaTime();
+
 private:
   // All events and actions that will happen whilst the game is running.
   GameLoop *gameloop;

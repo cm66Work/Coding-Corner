@@ -1,5 +1,7 @@
 #pragma once
 
+#include "cbe_GameLoop.hpp"
+
 namespace CoffeeBeanEngine {
 
 class Engine;

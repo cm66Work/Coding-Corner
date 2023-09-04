@@ -1,7 +1,7 @@
-CFLAGS = -std=c++17 -O2
+CFLAGS = -std=c++17 -O2 -I -I$(VULKAN_SDK_PATH)/include
 
-a.cout: *.cpp *.hpp
-	g++ $(CFLAGS) -o a.out *.cpp
+a.out: *.cpp *.hpp
+	g++ $(CFLAGS) -o a.out *.cpp *.hpp 
 
 .PHONY: test clean
 
