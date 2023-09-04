@@ -1,13 +1,15 @@
-#include "ConsoleGraphics.hpp"
+#include "cbe_Engine.hpp"
 
 // std
 #include <iostream>
 #include <stdexcept>
 
 int main() {
-  ES_ConsoleGraphics::ConsoleGraphics consoleGraphuics{};
+
+  CoffeeBeanEngine::Engine engine{};
+
   try {
-    consoleGraphuics.Run();
+    engine.Run();
   } catch (const std::exception &e) { // catch any errors during creation.
     std::cerr << e.what() << "\n";    // output any errors to the console.
     return EXIT_FAILURE;              // return -1.
