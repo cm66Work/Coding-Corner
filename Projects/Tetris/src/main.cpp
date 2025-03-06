@@ -1,27 +1,59 @@
+#include <iostream>
 #include <raylib.h>
-#include "ball.h"
+
+using namespace std;
+
+Color green = {173,204,96,255};
+Color darkGreen = {43,51,24,255};
+
+int cellSize = 30;
+int cellCount = 25;
+
+class Food
+{
+    public:
+    Vector2 position = {5,6};
+    Texture2D texture;
+
+    Food()
+    {
+        Image image = LoadImage("src/Graphics/food.png");
+        texture = LoadTextureFromImage(image);
+        UnloadImage(image);
+    }
+
+    ~Food()
+    {
+        UnloadTexture(texture);
+    }
+
+    void Draw()
+    {
+        DrawTexture(texture, position.x * cellSize, position.y * cellSize, WHITE);
+    }
+};
 
 int main() 
 {
-    const Color darkGreen = {20, 160, 133, 255};
-    
-    constexpr int screenWidth = 800;
-    constexpr int screenHeight = 600;
-    
-    Ball ball;
-    
-    InitWindow(screenWidth, screenHeight, "My first RAYLIB program!");
+    cout<<"Starting the game..."<<endl;
+    InitWindow(cellSize * cellCount, cellSize*cellCount, "Snake");
     SetTargetFPS(60);
-    
-    while (!WindowShouldClose())
+
+    Food food = Food();
+
+    while(WindowShouldClose() == false)
     {
-        ball.Update();
-        
         BeginDrawing();
-            ClearBackground(darkGreen);
-            ball.Draw();
+
+        // Drawing
+        ClearBackground(green);
+
+        // Draw the food
+        food.Draw();
+
         EndDrawing();
     }
-    
+
     CloseWindow();
+    return 0;
 }
