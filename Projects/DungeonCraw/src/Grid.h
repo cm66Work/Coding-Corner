@@ -9,6 +9,7 @@ public:
   {
     numRows = 20;
     numCols = 30;
+    grid = std::vector<std::vector<int>>(numRows, std::vector<int>(numCols,0));
     Initialize();
   }
 
@@ -17,7 +18,7 @@ public:
   void Draw();
   bool IsCellOutside(int row, int column);
   bool IsCellEmpty(int row, int column);
-  int grid[20][30];
+  std::vector<std::vector<int>> grid;
 
 private:
   int numRows;

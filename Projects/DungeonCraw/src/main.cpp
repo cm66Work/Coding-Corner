@@ -5,7 +5,7 @@
 #include "Palette.h"
 #include "Grid.h"
 #include "player.h"
-
+#include "AStar.h"
 
 int main() 
 {
@@ -33,7 +33,7 @@ int main()
             Vector2Int mousePositionInGrid;
             mousePositionInGrid.x = round((mousePosition.x - (CELL_SIZE / 2)) / CELL_SIZE);
             mousePositionInGrid.y = round((mousePosition.y - (CELL_SIZE / 2)) / CELL_SIZE);
-            std::cout<<"x: "<<mousePositionInGrid.x << " , y: " << mousePositionInGrid.y << std::endl;
+            // std::cout<<"x: "<<mousePositionInGrid.x << " , y: " << mousePositionInGrid.y << std::endl;
 
             // if the player has clicked on the same tile as the player,
             //  select the player.
@@ -53,6 +53,18 @@ int main()
                 if(grid.IsCellOutside(mousePositionInGrid.x, mousePositionInGrid.y) == false &&
                     grid.IsCellEmpty(mousePositionInGrid.x, mousePositionInGrid.y))
                 {
+                    Point startPoint;
+                    startPoint.x = player.entityPosition.x;
+                    startPoint.y = player.entityPosition.y;
+                    Point endPoint;
+                    endPoint.x = mousePositionInGrid.x;
+                    endPoint.y = mousePositionInGrid.y;
+                    std::vector<Point> path = AStarPathfinding(grid.grid, startPoint, endPoint);
+
+                    for(Point p : path)
+                    {
+                        p.Print();
+                    }
                     player.Move(mousePositionInGrid);
                 }
             }
