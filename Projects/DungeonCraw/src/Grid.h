@@ -4,22 +4,25 @@
 class Grid
 {
 public:
-  /// @brief Grid for the game world. Entities are represented by int value IDs;
-  /// @param width 
-  /// @param height 
-  /// @param cellSize 
-  Grid(int width, int height, int cellSize, std::vector<Color> colorPalette):
-    rows(height/cellSize),
-    columns(width/cellSize),
-    cellSize(cellSize),
-    colors(colorPalette),
-    cells(rows, std::vector<int>(columns,0)){};
-  /// @brief Handles the drawing of the grid.
+  Grid(std::vector<Color> colors):
+    colors(colors)
+  {
+    numRows = 30;
+    numCols = 20;
+    cellSize = 16;
+    Initialize();
+  }
+
+  void Initialize();
+  void Print();
   void Draw();
+  bool IsCellOutside(int row, int column);
+  bool IsCellEmpty(int row, int column);
+  int grid[30][20];
+
 private:
-  int rows;
-  int columns;
+  int numRows;
+  int numCols;
   int cellSize;
   std::vector<Color> colors;
-  std::vector<std::vector<int>> cells;
 };

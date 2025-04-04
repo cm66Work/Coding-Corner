@@ -1,13 +1,6 @@
 #include "component.h"
 
-Position::Position(int x, int y)
+void Component::Draw()
 {
-  this->x = x;
-  this->y = y;
-}
-
-void Position::SetPosition(int newX, int newY)
-{
-  this -> x = newX;
-  this -> y = newY;
+  DrawRectangle(position.x, position.y, cellSize -1 , cellSize -1, color);
 }
