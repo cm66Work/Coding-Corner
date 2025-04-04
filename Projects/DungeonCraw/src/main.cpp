@@ -16,6 +16,7 @@ int main()
 
     std::vector<Color> colorPalette = GetPaletteColors();
     Grid grid = Grid(colorPalette);
+    Player player = Player(colorPalette[3], 10,10, 16);
 
     
     while (!WindowShouldClose())
@@ -24,7 +25,8 @@ int main()
         BeginDrawing();
         ClearBackground(colorPalette[0]); 
 
-        grid.Draw();
+        // grid.Draw();
+        // player.Draw();
 
         EndDrawing();
     }
