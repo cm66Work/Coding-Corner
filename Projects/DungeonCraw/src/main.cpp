@@ -2,7 +2,7 @@
 #include <vector>
 #include "Palette.h"
 #include "Grid.h"
-#include "Player/Player.h"
+#include "player.h"
 
 
 int main() 
@@ -16,17 +16,21 @@ int main()
 
     std::vector<Color> colorPalette = GetPaletteColors();
     Grid grid = Grid(colorPalette);
-    Player player = Player(colorPalette[3], 10,10, 16);
-
+    Player player = Player(10,10,colorPalette[3], 16);
     
     while (!WindowShouldClose())
     {
+        // Player inputs
+        // Update 
+        // Rendering 
+
+
         // Call drawing functions
         BeginDrawing();
         ClearBackground(colorPalette[0]); 
 
-        // grid.Draw();
-        // player.Draw();
+        grid.Draw();
+        player.Draw();
 
         EndDrawing();
     }
