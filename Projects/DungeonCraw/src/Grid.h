@@ -4,12 +4,11 @@
 class Grid
 {
 public:
-  Grid(std::vector<Color> colors):
-    colors(colors)
+  Grid(std::vector<Color> colors, int cellSize):
+    colors(colors), cellSize(cellSize) 
   {
-    numRows = 30;
-    numCols = 20;
-    cellSize = 16;
+    numRows = 20;
+    numCols = 30;
     Initialize();
   }
 
@@ -18,11 +17,11 @@ public:
   void Draw();
   bool IsCellOutside(int row, int column);
   bool IsCellEmpty(int row, int column);
-  int grid[30][20];
+  int grid[20][30];
 
 private:
   int numRows;
   int numCols;
-  int cellSize;
   std::vector<Color> colors;
+  int cellSize;
 };

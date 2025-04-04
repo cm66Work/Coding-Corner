@@ -22,5 +22,32 @@ Entity::Entity(Vector2Int position, Color color, int cellSize)
 
 void Entity::Draw()
 {
-  DrawRectangle(entityPosition.x * cellSize + 1, entityPosition.y * cellSize + 1, cellSize - 1, cellSize - 1, entityColor);
+  Color color = (isSelected) ? Color{125,125,125,255} : entityColor;
+  DrawRectangle(entityPosition.x * cellSize + 1, entityPosition.y * cellSize + 1, cellSize - 1, cellSize - 1, color);
+}
+
+void Entity::Move(Vector2Int newPosition)
+{
+  // add A* path finding later. for now just move the entity to the location.
+  entityPosition = newPosition;
+}
+
+/// @brief Returns true if the clickPosition is equal to the entity position
+/// @param clickPosition 
+/// @return 
+bool Entity::IsEntityClicked(Vector2Int clickPosition)
+{
+  if(clickPosition.x == entityPosition.x && clickPosition.y == entityPosition.y)
+    return true;
+  return false;
+}
+
+void Entity::SelectEntity()
+{
+  isSelected = true;
+}
+
+void Entity::DeselectEntity()
+{
+  isSelected = false;
 }
