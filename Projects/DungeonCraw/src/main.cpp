@@ -30,7 +30,7 @@ int main()
     int FPS = 30;
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Dungeon Crawl");
     SetTargetFPS(FPS);
-    SetTargetFPS(60);
+    SetTargetFPS(30);
 
     std::vector<Color> colorPalette = GetPaletteColors();
     Grid grid = Grid(colorPalette, CELL_SIZE);
@@ -85,9 +85,12 @@ int main()
             player.DeselectEntity();
         }
         // Update 
-        // Update the current active entity.
-        // for now that is just the player.
-        player.Update();
+        if(EventTriggered(0.2))
+        {
+            // Update the current active entity.
+            // for now that is just the player.
+            player.Update();
+        }
         // Rendering 
 
         // Call drawing functions

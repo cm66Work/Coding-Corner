@@ -28,13 +28,13 @@ std::vector<Vector2Int> AStarPathfinding(
         Node current = openSet.top(); openSet.pop();
         Vector2Int p = current.position;
 
-        if (visited[p.y][p.x]) continue;
-        visited[p.y][p.x] = true;
-        cameFrom[p.y][p.x] = current.parent;
+        if (visited[p.x][p.y]) continue;
+        visited[p.x][p.y] = true;
+        cameFrom[p.x][p.y] = current.parent;
 
         if (p == goal) {
             std::vector<Vector2Int> path;
-            for (Vector2Int at = goal; at.x != -1; at = cameFrom[at.y][at.x])
+            for (Vector2Int at = goal; at.x != -1; at = cameFrom[at.x][at.y])
                 path.push_back(at);
             std::reverse(path.begin(), path.end());
             return path;
@@ -42,7 +42,7 @@ std::vector<Vector2Int> AStarPathfinding(
 
         for (Vector2Int d : directions) {
             int nx = p.x + d.x, ny = p.y + d.y;
-            if (nx >= 0 && ny >= 0 && nx < cols && ny < rows && grid[ny][nx] == 0 && !visited[ny][nx]) {
+            if (nx >= 0 && ny >= 0 && nx < rows && ny < cols && grid[nx][ny] == 0 && !visited[nx][ny]) {
                 openSet.push({{nx, ny}, current.g + 1, heuristic({nx, ny}, goal), p});
             }
         }
