@@ -50,8 +50,7 @@ void Entity::MoveToNextPosition()
   if(movementPath.size() == 0)
     return;
   entityPosition = movementPath[0];
-  std::cout<<movementPath.front().x<<std::endl;
-  
+  movementPath.erase(movementPath.begin());
 }
 
 /// @brief Returns true if the clickPosition is equal to the entity position

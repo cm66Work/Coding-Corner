@@ -85,6 +85,9 @@ int main()
             player.DeselectEntity();
         }
         // Update 
+        // Update the current active entity.
+        // for now that is just the player.
+        player.Update();
         // Rendering 
 
         // Call drawing functions
