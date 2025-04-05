@@ -1,12 +1,7 @@
 #pragma once
 #include <raylib.h>
-
-struct Vector2Int
-{
-  int x;
-  int y;
-};
-
+#include <vector>
+#include "utils.h"
 // this will be used for all entities in the game.
 class Entity
 {
@@ -15,12 +10,19 @@ public:
   Entity(int x, int y, Color color, int cellSize);
   Entity(Vector2Int position, Color color,int cellSize);
   void Draw();
-  void Move(Vector2Int newPosition);
+  void Update();
+  Vector2Int entityPosition;
+  void SetPosition(Vector2Int newPosition);
+  void MoveToNextPosition();
   bool IsEntityClicked(Vector2Int clickPosition);
   void SelectEntity();
   void DeselectEntity();
-  Vector2Int entityPosition;
+  void SetMovementPath(std::vector<Vector2Int> newPath);
   Color entityColor;
   int cellSize;
   bool isSelected;
+private:
+  std::vector<Vector2Int> movementPath;
+  int totalActionPoints = 2;
+  int remainingActionPoints = 2;
 };

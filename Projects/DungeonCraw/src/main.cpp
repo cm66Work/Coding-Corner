@@ -7,6 +7,19 @@
 #include "player.h"
 #include "AStar.h"
 
+double lastUpdateTime = 0;
+bool EventTriggered(double interval = 0.2)
+{
+    double currentTime = GetTime();
+    if(currentTime - lastUpdateTime >= interval)
+    {
+        lastUpdateTime = currentTime;
+        return true;
+    }
+    return false;
+}
+
+
 int main() 
 {
     const int CELL_SIZE = 16;
@@ -33,7 +46,7 @@ int main()
             Vector2Int mousePositionInGrid;
             mousePositionInGrid.x = round((mousePosition.x - (CELL_SIZE / 2)) / CELL_SIZE);
             mousePositionInGrid.y = round((mousePosition.y - (CELL_SIZE / 2)) / CELL_SIZE);
-            // std::cout<<"x: "<<mousePositionInGrid.x << " , y: " << mousePositionInGrid.y << std::endl;
+            // mousePositionInGrid.Print();
 
             // if the player has clicked on the same tile as the player,
             //  select the player.
@@ -53,19 +66,15 @@ int main()
                 if(grid.IsCellOutside(mousePositionInGrid.x, mousePositionInGrid.y) == false &&
                     grid.IsCellEmpty(mousePositionInGrid.x, mousePositionInGrid.y))
                 {
-                    Point startPoint;
-                    startPoint.x = player.entityPosition.x;
-                    startPoint.y = player.entityPosition.y;
-                    Point endPoint;
+                    Vector2Int endPoint;
                     endPoint.x = mousePositionInGrid.x;
                     endPoint.y = mousePositionInGrid.y;
-                    std::vector<Point> path = AStarPathfinding(grid.grid, startPoint, endPoint);
-
-                    for(Point p : path)
+                    std::vector<Vector2Int> path = AStarPathfinding(
+                                                    grid.grid, player.entityPosition, endPoint);
+                    if(path.size() != 0)
                     {
-                        p.Print();
+                        player.SetMovementPath(path);
                     }
-                    player.Move(mousePositionInGrid);
                 }
             }
             // if the player is selected, and not clicked again,

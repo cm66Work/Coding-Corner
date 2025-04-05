@@ -1,30 +1,18 @@
 #pragma once
 #include <vector>
 #include <iostream>
-
-
-struct Point {
-    int x, y;
-    bool operator==(const Point& other) const {
-        return x == other.x && y == other.y;
-    }
-
-    void Print()
-    {
-        std::cout<<"x: "<<x<<", y:"<<y<<std::endl;
-    };
-};
+#include "utils.h"
 
 struct Node {
-    Point position;
+    Vector2Int position;
     int g, h;
-    Point parent;
+    Vector2Int parent;
     int f() const { return g + h; }
 };
 
 
-std::vector<Point> AStarPathfinding(
+std::vector<Vector2Int> AStarPathfinding(
   const std::vector<std::vector<int>>& grid,
-  const Point& startPoint,
-  const Point& endPoint
+  const Vector2Int& startPoint,
+  const Vector2Int& endPoint
 );
