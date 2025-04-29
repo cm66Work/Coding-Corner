@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include "Palette.h"
+#include "levelGeneration.h"
 #include "Grid.h"
 #include "player.h"
 #include "AStar.h"
@@ -19,7 +20,6 @@ bool EventTriggered(double interval = 0.2)
     return false;
 }
 
-
 int main() 
 {
     const int CELL_SIZE = 16;
@@ -34,6 +34,8 @@ int main()
 
     std::vector<Color> colorPalette = GetPaletteColors();
     Grid grid = Grid(colorPalette, CELL_SIZE);
+    LevelGeneration levelGenerator = LevelGeneration(&grid);
+    levelGenerator.RandomizeWalls();
     Player player = Player(10,10,colorPalette[3], CELL_SIZE);
     
     while (!WindowShouldClose())
@@ -85,7 +87,7 @@ int main()
             player.DeselectEntity();
         }
         // Update 
-        if(EventTriggered(0.2))
+        if(EventTriggered(0.01))
         {
             // Update the current active entity.
             // for now that is just the player.
@@ -96,7 +98,7 @@ int main()
         // Call drawing functions
         BeginDrawing();
         ClearBackground(colorPalette[0]); 
-
+         
         grid.Draw();
         player.Draw();
 
