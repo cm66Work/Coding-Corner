@@ -249,7 +249,7 @@ int main()
     {
         BeginDrawing();
 
-        if(eventTriggered(0.2))
+        if(eventTriggered(0.1))
         { 
             // Move the snake
             game.Update();

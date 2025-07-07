@@ -8,7 +8,7 @@ int main()
     const int WINDOW_WIDTH = 1200;
     const int WINDOW_HEIGHT = 800;
     const int CELL_SIZE = 4;
-    int FPS = 120;
+    int FPS = 30;
 
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game of Life");
     SetTargetFPS(FPS);
